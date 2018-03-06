@@ -36,7 +36,7 @@ namespace Microsoft.Bot.Sample.LuisBot
             var response = context.MakeMessage();
             response.Text = "Welcome to MP3 Player! Let's find a song to play.";
             response.Speak = response.Text;
-            response.InputHint = InputHints.ExpectingInput;
+            response.InputHint = InputHints.IgnoringInput;
             await context.PostAsync(response);
             context.Wait(MessageReceived);
         }
@@ -47,7 +47,7 @@ namespace Microsoft.Bot.Sample.LuisBot
             var response = context.MakeMessage();
             response.Text = "Are you sure you want to delete this?";
             response.Speak = response.Text;
-            response.InputHint = InputHints.ExpectingInput;
+            response.InputHint = InputHints.AcceptingInput;
             await context.PostAsync(response);
             context.Wait(MessageReceived);
         }
