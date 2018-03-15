@@ -35,7 +35,18 @@ namespace Microsoft.Bot.Sample.LuisBot
         {
             var response = context.MakeMessage();
             response.Text = "Welcome to MP3 Player! Let's find a song to play.";
-            response.Speak = response.Text;
+            //for modifying how cortana speaks
+            response.Speak = @"<speak><prosody rate=""fast"">You are using the MP3 Player Skill. <audio src=""http://msconnect-cortanaskill.azurewebsites.net/tada.mp3""/>How can I help?</prosody></speak> ";
+            //for adding audio attachments
+            AudioCard card = new AudioCard
+            {
+                Media = new MediaUrl[] { new MediaUrl("http://msconnect-cortanaskill.azurewebsites.net/tada.mp3") }
+            };
+
+            response.Attachments.Add(card.ToAttachment());
+
+            
+            
             response.InputHint = InputHints.IgnoringInput;
             await context.PostAsync(response);
             context.Wait(MessageReceived);
