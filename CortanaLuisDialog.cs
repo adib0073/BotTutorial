@@ -43,7 +43,10 @@ namespace Microsoft.Bot.Sample.LuisBot
             var response = context.MakeMessage();
 
             response.Text = "Let's find a song for you to play.";
-
+            
+            //for modifying how Cortana speaks
+            response.Speak = @"<speak><prosody rate=""fast"">You are using the MP3 Player Skill. <audio src=""http://msconnect-cortanaskill.azurewebsites.net/tada.mp3""/>How can I help?</prosody></speak> ";
+            //For attaching audio cards
             AudioCard card = new AudioCard
             {
                 Media = new MediaUrl[] { new MediaUrl("http://www.mediacollege.com/audio/tone/files/100Hz_44100Hz_16bit_05sec.mp3") }
